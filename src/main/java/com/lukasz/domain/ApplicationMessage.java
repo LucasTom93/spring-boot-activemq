@@ -2,22 +2,22 @@ package com.lukasz.domain;
 
 import com.google.common.base.Objects;
 
-public class Email {
+public class ApplicationMessage {
 
     private String recipientEmail;
     private String message;
 
-    Email() {
+    ApplicationMessage() {
         //for jackson
     }
 
-    private Email(String recipientEmail, String message) {
+    private ApplicationMessage(String recipientEmail, String message) {
         this.recipientEmail = recipientEmail;
         this.message = message;
     }
 
-    public static Email of(String recipientEmail, String message) {
-        return new Email(recipientEmail, message);
+    public static ApplicationMessage of(String recipientEmail, String message) {
+        return new ApplicationMessage(recipientEmail, message);
     }
 
     public String getRecipientEmail() {
@@ -39,10 +39,10 @@ public class Email {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Email)) return false;
-        Email email = (Email) o;
-        return Objects.equal(recipientEmail, email.recipientEmail) &&
-                Objects.equal(message, email.message);
+        if (!(o instanceof ApplicationMessage)) return false;
+        var applicationMessage = (ApplicationMessage) o;
+        return Objects.equal(recipientEmail, applicationMessage.recipientEmail) &&
+                Objects.equal(message, applicationMessage.message);
     }
 
     @Override
