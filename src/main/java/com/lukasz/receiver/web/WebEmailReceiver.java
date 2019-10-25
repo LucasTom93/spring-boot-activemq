@@ -1,4 +1,4 @@
-package com.lukasz.receiver;
+package com.lukasz.receiver.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,13 +6,14 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 import com.lukasz.domain.Email;
+import com.lukasz.domain.MessageInfo;
 
 @Component
-class EmailReceiver {
+class WebEmailReceiver {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailReceiver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebEmailReceiver.class);
 
-    @JmsListener(destination = "mailbox", containerFactory = "listenerContainerFactory")
+    @JmsListener(destination = MessageInfo.TOPIC_NAME, containerFactory = "topicListenerFactory")
     void receiveEmail(Email email) {
         LOGGER.info("Received: {}", email);
     }

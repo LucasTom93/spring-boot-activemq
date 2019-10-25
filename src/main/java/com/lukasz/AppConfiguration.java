@@ -15,10 +15,11 @@ import org.springframework.jms.support.converter.MessageType;
 class AppConfiguration {
 
     @Bean
-    JmsListenerContainerFactory<?> listenerContainerFactory(ConnectionFactory connectionFactory,
-                                                            DefaultJmsListenerContainerFactoryConfigurer configurer) {
+    JmsListenerContainerFactory<?> topicListenerFactory(ConnectionFactory connectionFactory,
+                                                        DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         configurer.configure(factory, connectionFactory);
+        factory.setPubSubDomain(true);
         return factory;
     }
 
